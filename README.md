@@ -1,1 +1,1 @@
-# deeplearninglab_angularjs
+# Deeplearning Lab AngularJS
