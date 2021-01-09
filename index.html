@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+  <title>DeeplearningLab</title>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -32,7 +32,7 @@
   ======================================================= -->
 </head>
 
-<body>
+<body ng-app="app">
   <section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
@@ -43,7 +43,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="index.html" class="logo"><b>DEEPLEARNING<span>LAB</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -252,6 +252,17 @@
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
               </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Network</span>
+            </a>
+            <ul class="sub">
+              <li><a href="networks.html">Manage</a></li>
+              <li><a href="learningbase.html">Learning Base</a></li>
+              <li><a href="training.html">Training</a></li>
+            </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
@@ -886,6 +897,8 @@
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
   </script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>

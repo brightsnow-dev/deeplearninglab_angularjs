@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/DiabateJS/deeplearninglab_angularjs/issues"
   },
-  "homepage": "https://github.com/DiabateJS/deeplearninglab_angularjs#readme"
+  "homepage": "https://github.com/DiabateJS/deeplearninglab_angularjs#readme",
+  "dependencies": {
+    "angular": "^1.8.2",
+    "angular-route": "^1.8.2"
+  }
 }
