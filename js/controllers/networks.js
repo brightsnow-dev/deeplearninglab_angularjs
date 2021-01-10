@@ -52,6 +52,8 @@ app.controller('NetworkCtrl', function($scope, NetworkService){
             neuronsParCouches: $scope.network.neuronsParCouches,
             tauxApprentissage: $scope.network.tauxApprentissage,
             fonctionTransfert: $scope.network.fonctionTransfert,
+            labelsNeuronsEntree: $scope.network.labelsNeuronsEntree,
+            labelsNeuronsSortie: $scope.network.labelsNeuronsSortie,
             typeReseau: $scope.network.typeReseau
         };
     }
