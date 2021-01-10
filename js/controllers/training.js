@@ -9,6 +9,7 @@ app.controller('TrainingCtrl', function($scope,NetworkService){
    $scope.item = {};
 
    $scope.neuroneSortiePoidFort = 0;
+   $scope.resultatTraining = '';
    $scope.canShowResult = false;
 
     $scope.resultat = [];
@@ -30,6 +31,7 @@ app.controller('TrainingCtrl', function($scope,NetworkService){
    $scope.selectNetwork = () => {
        NetworkService.getNetwork($scope.network.id).then(
             response => {
+                $scope.network = response.data;
                 if (response.data && response.data.neuronsParCouches){
                     $scope.network = response.data;
                     let tab = response.data.neuronsParCouches.split(',');
@@ -51,15 +53,30 @@ app.controller('TrainingCtrl', function($scope,NetworkService){
 
    $scope.train = () => {
        $scope.resultat = [];
+       let tabLabelsEntree = $scope.network.labelsNeuronsEntree.split(',');
+       let tabLabelSortie = $scope.network.labelsNeuronsSortie.split(',');
        let max = 0.0;
+       let indexMax = 0;
        let currentRand;
-       for (let i = 0 ; i < $scope.nbreNeuronesSortie ; i++){
-           currentRand = Math.random();
-           $scope.resultat.push(currentRand);
-           max = currentRand > max ? currentRand : max;
+       if ($scope.item.input){
+           if (tabLabelsEntree.length == $scope.item.input.split(',').length){
+               for (let i = 0 ; i < $scope.nbreNeuronesSortie ; i++){
+                   currentRand = Math.random();
+                   $scope.resultat.push(currentRand);
+                   if (currentRand > max){
+                       max = currentRand;
+                       indexMax = i;
+                   }
+               }
+               $scope.neuroneSortiePoidsFort = max;
+               $scope.canShowResult = true;
+               $scope.resultatTraining = tabLabelSortie[indexMax];
+           }else{
+               alert('Le champ input ne contient pas le nombre de valeurs requises !');
+           }
+       }else{
+           alert("Veuillez renseigner le champ input");
        }
-       $scope.neuroneSortiePoidFort = max;
-       $scope.canShowResult = true;
    }
 
 });

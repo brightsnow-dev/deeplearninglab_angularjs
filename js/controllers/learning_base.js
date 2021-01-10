@@ -37,6 +37,8 @@ app.controller('LearningBaseCtrl', function($scope,NetworkService,LearningBaseSe
    $scope.selectNetwork = () => {
        NetworkService.getNetwork($scope.network.id).then(
             response => {
+                console.log(response.data);
+                $scope.network = response.data;
                 if (response.data && response.data.neuronsParCouches){
                     let tab = response.data.neuronsParCouches.split(',');
                     $scope.nbreNeuronesEntree = tab[0];
