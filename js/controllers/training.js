@@ -1,4 +1,4 @@
-app.controller('TrainingCtrl', function($scope,NetworkService){
+app.controller('TrainingCtrl', function($scope,NetworkService, TrainingService){
    $scope.networks = [];
    $scope.network = {};
 
@@ -12,7 +12,7 @@ app.controller('TrainingCtrl', function($scope,NetworkService){
    $scope.resultatTraining = '';
    $scope.canShowResult = false;
 
-    $scope.resultat = [];
+    $scope.resultat = {};
 
 
    $scope.loadNetworks = () => {
@@ -52,31 +52,23 @@ app.controller('TrainingCtrl', function($scope,NetworkService){
    }
 
    $scope.train = () => {
-       $scope.resultat = [];
-       let tabLabelsEntree = $scope.network.labelsNeuronsEntree.split(',');
-       let tabLabelSortie = $scope.network.labelsNeuronsSortie.split(',');
-       let max = 0.0;
-       let indexMax = 0;
-       let currentRand;
-       if ($scope.item.input){
-           if (tabLabelsEntree.length == $scope.item.input.split(',').length){
-               for (let i = 0 ; i < $scope.nbreNeuronesSortie ; i++){
-                   currentRand = Math.random();
-                   $scope.resultat.push(currentRand);
-                   if (currentRand > max){
-                       max = currentRand;
-                       indexMax = i;
-                   }
+       TrainingService.trainNetwork($scope.network.id, $scope.item.input).then(
+           response => {
+               console.log(response.data);
+               if (!response.data.code){
+                   $scope.resultat = response.data;
+                   $scope.canShowResult = true;
+               }else{
+                   $scope.resultat = {};
+                   $scope.canShowResult = false;
+                   alert(`${response.data.code}::${response.data.message}`);
                }
-               $scope.neuroneSortiePoidsFort = max;
-               $scope.canShowResult = true;
-               $scope.resultatTraining = tabLabelSortie[indexMax];
-           }else{
-               alert('Le champ input ne contient pas le nombre de valeurs requises !');
+           },
+           error => {
+               console.log('Erreur survenue');
+               console.log(error);
            }
-       }else{
-           alert("Veuillez renseigner le champ input");
-       }
+       );
    }
 
 });

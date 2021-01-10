@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="form-group" ng-if="canShowResult">
-                            <h4>Resultat : {{resultatTraining}} ({{neuroneSortiePoidsFort}})</h4><br>
+                            <h4>Resultat : {{resultat.label}} ({{resultat.output}})</h4><br>
                             <table class="table table-striped">
                                 <tr>
                                     <td>Nom du reseau</td>
@@ -59,7 +59,7 @@
                                     <td>Résultat de l'entrainement</td>
                                     <td>
                                         <ul>
-                                            <li ng-repeat="nbre in resultat">{{nbre}}</li>
+                                            <li ng-repeat="nbre in resultat.outputs">{{nbre}}</li>
                                         </ul>
                                     </td>
                                 </tr>
