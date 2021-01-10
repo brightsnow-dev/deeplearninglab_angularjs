@@ -1,0 +1,117 @@
+<section class="wrapper" ng-init="loadNetworks()">
+    <h3><i class="fa fa-angle-right"></i> Gestion des reseaux de neurones</h3>
+    <!-- row -->
+    <div class="row mt">
+        <div class="col-md-12">
+            <div class="content-panel">
+                <table class="table table-striped table-advance table-hover">
+                    <h4><i class="fa fa-angle-right"></i> Reseaux de neuronnes</h4>
+                    <hr>
+                    <thead>
+                    <tr>
+                        <th><i class="fa fa-bullhorn"></i> Id</th>
+                        <th class="hidden-phone"><i class="fa fa-question-circle"></i> Libelle</th>
+                        <th><i class="fa fa-bookmark"></i> Neurones par couches</th>
+                        <th><i class=" fa fa-edit"></i> Taux apprentissage</th>
+                        <th><i class=" fa fa-edit"></i> Fonction de transfert</th>
+                        <th><i class=" fa fa-edit"></i> Type de reseau</th>
+                        <th><i class=" fa fa-edit"></i> Labels neurons entrée</th>
+                        <th><i class=" fa fa-edit"></i> Labels neurons sortie</th>
+                        <th><i class=" fa fa-edit"></i> Actions</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="net in networks">
+                        <td>{{net.id}}</td>
+                        <td class="hidden-phone">{{net.label}}</td>
+                        <td>{{net.neuronsParCouches}}</td>
+                        <td>{{net.tauxApprentissage}}</td>
+                        <td>{{net.fonctionTransfert}}</td>
+                        <td>{{net.typeReseau}}</td>
+                        <td>{{net.labelsNeuronsEntree}}</td>
+                        <td>{{net.labelsNeuronsSortie}}</td>
+                        <td>
+                            <button class="btn btn-primary btn-xs" ng-click="showNetwork(net.id)"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-danger btn-xs" ng-click="deleteNetwork(net.id)"><i class="fa fa-trash-o "></i></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /content-panel -->
+        </div>
+        <!-- /col-md-12 -->
+    </div>
+    <!-- /row -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="content-panel">
+                <h4><i class="fa fa-angle-right"></i> Reseau de neurones</h4>
+                <hr>
+                <div class="form-panel">
+                    <form class="form-horizontal style-form">
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="network.id" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Label</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="network.label">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Neurons par couches</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="network.neuronsParCouches">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Taux apprentissage</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="network.tauxApprentissage">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Labels neurones entrée</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="network.labelsNeuronsEntree">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Labels neurones sortie</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="network.labelsNeuronsSortie">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Fonction de transfert</label>
+                            <div class="col-sm-10">
+                                <select type="text" class="form-control" ng-model="network.fonctionTransfert">
+                                    <option value="Sigmoid">Sigmoid</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Type de reseau</label>
+                            <div class="col-sm-10">
+                                <select type="text" class="form-control" ng-model="network.typeReseau">
+                                    <option value="Perceptron">Perceptron</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <button class="btn btn-primary" ng-click="save()">Enregistrer</button>
+                                <button class="btn btn-warning" ng-click="clearNetworkForm()">Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,73 @@
+<section class="wrapper" ng-init="loadNetworks()">
+    <h3><i class="fa fa-angle-right"></i> Entrainement de reseau de neuronnes</h3>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="content-panel">
+                <h4><i class="fa fa-angle-right"></i> Item d'apprentissage du reseau de neurones</h4>
+                <div class="form-panel">
+                    <form class="form-horizontal style-form">
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Label du reseau </label>
+                            <div class="col-sm-6">
+                                <select type="text" class="form-control" ng-model="network.id" ng-change="selectNetwork()">
+                                    <option value="{{net.id}}" ng-repeat="net in networks">{{net.label}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Labels neurones en entrée </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="{{network.labelsNeuronsEntree}}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Input ({{nbreNeuronesEntree}})</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="item.input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <button class="btn btn-primary" ng-click="train()">Entrainer</button>
+                                <button class="btn btn-warning" ng-click="clearTrainForm()">Annuler</button>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="canShowResult">
+                            <h4>Resultat : {{resultatTraining}} ({{neuroneSortiePoidsFort}})</h4><br>
+                            <table class="table table-striped">
+                                <tr>
+                                    <td>Nom du reseau</td>
+                                    <td>{{network.label}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Neurones par couches</td>
+                                    <td>{{network.neuronsParCouches}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Labels neurones en entrée</td>
+                                    <td>{{network.labelsNeuronsEntree}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Labels neurones en sortie</td>
+                                    <td>{{network.labelsNeuronsSortie}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Neurones en entrée ({{nbreNeuronesEntree}})</td>
+                                    <td>{{item.input}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Résultat de l'entrainement</td>
+                                    <td>
+                                        <ul>
+                                            <li ng-repeat="nbre in resultat">{{nbre}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
