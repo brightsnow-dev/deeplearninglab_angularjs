@@ -19,4 +19,4 @@ app.config(['$routeProvider', function config($routeProvider){
             controller: 'TrainingCtrl'
         }).
         otherwise('/home');
-}])
+}]);
